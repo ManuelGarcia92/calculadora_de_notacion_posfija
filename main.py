@@ -1,33 +1,24 @@
-prioridad = {
-    "+"  : 1,
-    "-"  : 1,
-    "*"  : 2,
-    "/"  : 2,
-    "**" : 3
-}
+from extras import limpiar_terminal, pausa
+from constantes import OPERACIONES, PRIORIDAD, ASOCIATIVIDAD
+from lexer import lexer
+from shuting_yard import shuting_yard
+from evaluador import evaluar_posfijo
 
-asociatividad = {
-    "+"  : "L",
-    "-"  : "L",
-    "*"  : "L",
-    "/"  : "L",
-    "**" : "R"
-}
+def main() -> None:
+    while True:
+        limpiar_terminal()
+        print("[Ingrese break para salir]")
+        texto = input(">>>: ")
+        if texto == "break":
+            break 
+        try:
+            expresion = lexer(texto)
+            operacion = shuting_yard(expresion, PRIORIDAD, ASOCIATIVIDAD)
+            resultado = evaluar_posfijo(operacion, OPERACIONES)
+            print(resultado)
+        except Exception as error:
+            print(error)
+        pausa()
 
-expresion = "2+3*4-5/2"
-cola_salida = []
-pila_operadores = []
-
-for token in expresion:
-    if token.replace(".","", 1).isdigit():
-        cola_salida.append(token)
-
-    elif token in prioridad:
-        while (pila_operadores and 
-               (prioridad[pila_operadores[-1]] > prioridad[token] or 
-                (prioridad[pila_operadores[-1]] == prioridad[token] and asociatividad[token] == "L"))):
-            cola_salida.append(pila_operadores.pop())
-        pila_operadores.append(token)
-
-while pila_operadores:
-    cola_salida.append(pila_operadores.pop())
+if __name__ == "__main__":
+    main()
