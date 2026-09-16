@@ -7,7 +7,7 @@ OPERACIONES = {
     "//": lambda x, y: x // y,
     "+" : lambda x, y: x + y,
     "-" : lambda x, y: x - y
-}
+    } 
 
 OPERADORES_SIMPLES = {"+", "-", "*", "/", "$", "%", "(", ")"}
 
@@ -22,7 +22,7 @@ PRIORIDAD = {
     "%"  : 2,
     "$"  : 3,
     "**" : 3
-}
+    }  
 
 ASOCIATIVIDAD = {
     "+"  : "L",
@@ -34,4 +34,4 @@ ASOCIATIVIDAD = {
     "%"  : "L",
     "$"  : "R",
     "**" : "R"
-}
+    }
