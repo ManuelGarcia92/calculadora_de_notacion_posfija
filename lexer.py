@@ -1,6 +1,6 @@
 from constantes import OPERADORES_SIMPLES, OPERADORES_DOBLES
 
-def leer_numero(texto: str, posicion: int) -> int|str|Exception:
+def leer_numero(texto: str, posicion: int) -> int | str:
     contador_punto_decimal = 0
     buffer = ""
 
@@ -26,7 +26,7 @@ def leer_numero(texto: str, posicion: int) -> int|str|Exception:
 
     return posicion, buffer
 
-def leer_simbolo(texto: str, posicion: int) -> int|str:
+def leer_simbolo(texto: str, posicion: int) -> int | str:
     if posicion < len(texto):
         if posicion < len(texto) - 1 and texto[posicion] + texto[posicion + 1] in OPERADORES_DOBLES:
             simbolo = texto[posicion] + texto[posicion + 1]

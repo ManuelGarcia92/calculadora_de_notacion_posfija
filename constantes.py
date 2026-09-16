@@ -9,9 +9,9 @@ OPERACIONES = {
     "-" : lambda x, y: x - y
 }
 
-OPERADORES_SIMPLES = ("+", "-", "*", "/", "$", "%", "(", ")")
+OPERADORES_SIMPLES = {"+", "-", "*", "/", "$", "%", "(", ")"}
 
-OPERADORES_DOBLES = ("**", "//")
+OPERADORES_DOBLES = {"**", "//"}
 
 PRIORIDAD = {
     "+"  : 1,

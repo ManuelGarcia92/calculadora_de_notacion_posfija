@@ -1,4 +1,4 @@
-def evaluar_posfijo(lista_posfijo: list, operaciones: dict) -> float|int:
+def evaluar_posfijo(lista_posfijo: list, operaciones: dict) -> float | int:
     pila_numeros = []
     for token in lista_posfijo:
         if token in operaciones:
