@@ -1,37 +1,38 @@
+import operaciones
 OPERACIONES = {
     "**": lambda x, y: x ** y,
-    "$" : lambda x, y: y ** (1 / x),
-    "%" : lambda x, y: x % y,
+    "$" : lambda x, y: operaciones.raiz_enesima(x, y),
+    "//": lambda x, y: operaciones.division_entera(x, y),
+    "%" : lambda x, y: operaciones.modulo(x, y),
+    "/" : lambda x, y: operaciones.division(x, y),
     "*" : lambda x, y: x * y,
-    "/" : lambda x, y: x / y,
-    "//": lambda x, y: x // y,
-    "+" : lambda x, y: x + y,
-    "-" : lambda x, y: x - y
-    } 
+    "-" : lambda x, y: x - y,
+    "+" : lambda x, y: x + y
+} 
 
-OPERADORES_SIMPLES = {"+", "-", "*", "/", "$", "%", "(", ")"}
+OPERADORES_SIMPLES = {"+", "-", "*", "/", "%", "$", "(", ")"}
 
-OPERADORES_DOBLES = {"**", "//"}
+OPERADORES_DOBLES = {"//", "**"}
 
 PRIORIDAD = {
-    "+"  : 1,
-    "-"  : 1,
-    "*"  : 2,
-    "/"  : 2,
+    "**" : 3,
+    "$"  : 3,
     "//" : 2,
     "%"  : 2,
-    "$"  : 3,
-    "**" : 3
-    }  
+    "/"  : 2,
+    "*"  : 2,
+    "-"  : 1,
+    "+"  : 1,
+}  
 
 ASOCIATIVIDAD = {
-    "+"  : "L",
-    "-"  : "L",
-    "%"  : "L",
-    "*"  : "L",
-    "/"  : "L",
+    "**" : "R",
+    "$"  : "R",
     "//" : "L",
     "%"  : "L",
-    "$"  : "R",
-    "**" : "R"
-    }
+    "/"  : "L",
+    "*"  : "L",
+    "-"  : "L",
+    "+"  : "L",
+}  
+  
