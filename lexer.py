@@ -1,22 +1,22 @@
 from constantes import OPERADORES_SIMPLES, OPERADORES_DOBLES
 
-def leer_numero(texto: str, posicion: int) -> int | str:
+def leer_numero(texto: str, pos: int) -> int | str:
     contador_punto_decimal = 0
     buffer = ""
 
-    while posicion < len(texto) and (texto[posicion].isdigit() or texto[posicion] == "."):
-        if texto[posicion] == ".":
+    while pos < len(texto) and (texto[pos].isdigit() or texto[pos] == "."):
+        if texto[pos] == ".":
             contador_punto_decimal += 1
 
-        buffer += texto[posicion]
-        posicion += 1
+        buffer += texto[pos]
+        pos += 1
 
     if contador_punto_decimal > 1:
         raise Exception("Error: Número con varios puntos decimales")
     
     if contador_punto_decimal:
         if buffer == ".":
-            return posicion, 0.0
+            return pos, 0.0
         
         elif buffer[0] == ".":
             buffer = "0" + buffer
@@ -24,36 +24,36 @@ def leer_numero(texto: str, posicion: int) -> int | str:
         elif buffer[-1] == ".":
             buffer += "0"
 
-    return posicion, buffer
+    return pos, buffer
 
-def leer_simbolo(texto: str, posicion: int) -> int | str:
-    if posicion < len(texto):
-        if posicion < len(texto) - 1 and texto[posicion] + texto[posicion + 1] in OPERADORES_DOBLES:
-            simbolo = texto[posicion] + texto[posicion + 1]
-            posicion += 2
+def leer_simbolo(texto: str, pos: int) -> int | str:
+    if pos < len(texto):
+        if pos < len(texto) - 1 and texto[pos] + texto[pos + 1] in OPERADORES_DOBLES:
+            simbolo = texto[pos] + texto[pos + 1]
+            pos += 2
             
         else:
-            simbolo = texto[posicion]
-            posicion += 1  
+            simbolo = texto[pos]
+            pos += 1  
 
-        return posicion, simbolo
+        return pos, simbolo
     
 def lexer(texto: str) -> list:
     lista_tokens = []
-    posicion = 0
+    pos = 0
 
-    while posicion < len(texto):
-        char_actual = texto[posicion]
+    while pos < len(texto):
+        char_actual = texto[pos]
 
         if char_actual.isspace():
-            posicion += 1
+            pos += 1
 
         elif char_actual.isdigit() or char_actual == ".":
-            posicion, numero = leer_numero(texto, posicion)
+            pos, numero = leer_numero(texto, pos)
             lista_tokens.append(numero)
 
         elif char_actual in OPERADORES_SIMPLES:
-            posicion, simbolo = leer_simbolo(texto, posicion)
+            pos, simbolo = leer_simbolo(texto, pos)
             lista_tokens.append(simbolo)
 
     return lista_tokens
