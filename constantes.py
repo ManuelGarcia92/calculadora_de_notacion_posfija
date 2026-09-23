@@ -1,4 +1,5 @@
 import operaciones
+
 OPERACIONES = {
     "**": lambda x, y: x ** y,
     "$" : lambda x, y: operaciones.raiz_enesima(x, y),

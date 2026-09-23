@@ -16,7 +16,7 @@ def leer_numero(texto: str, pos: int) -> int | str:
     
     if contador_punto_decimal:
         if buffer == ".":
-            return pos, 0.0
+            return pos, "0.0"
         
         elif buffer[0] == ".":
             buffer = "0" + buffer
@@ -55,6 +55,6 @@ def lexer(texto: str) -> list:
         elif char_actual in OPERADORES_SIMPLES:
             pos, simbolo = leer_simbolo(texto, pos)
             lista_tokens.append(simbolo)
-
+            
     return lista_tokens
-
+  

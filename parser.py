@@ -1,0 +1,18 @@
+from nodos import NodoBinario, NodoNumero
+
+def parser(lista_posfijo: list) -> list:
+    pila_nodos = []
+
+    for token in lista_posfijo:
+        if token.isdigit() or token == "0.0":
+            nodo_numero = NodoNumero(token)
+            pila_nodos.append(nodo_numero)
+
+        else:
+            operador = token
+            derecha = pila_nodos.pop()
+            izquierda = pila_nodos.pop()
+            nodo = NodoBinario(operador, derecha, izquierda)
+            pila_nodos.append(nodo)
+
+    return pila_nodos[0]
