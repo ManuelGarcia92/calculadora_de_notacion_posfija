@@ -15,4 +15,4 @@ def parser(lista_posfijo: list) -> list:
             nodo = NodoBinario(operador, derecha, izquierda)
             pila_nodos.append(nodo)
 
-    return pila_nodos[0]
+    return pila_nodos
