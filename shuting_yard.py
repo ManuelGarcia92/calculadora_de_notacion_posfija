@@ -24,5 +24,5 @@ def shuting_yard(lista_tokens: list, prioridad: dict, asociatividad: dict) -> li
 
     while pila_operadores:
         cola_salida.append(pila_operadores.pop())
-
+        
     return cola_salida

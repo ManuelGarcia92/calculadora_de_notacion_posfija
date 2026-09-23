@@ -4,7 +4,7 @@ def parser(lista_posfijo: list) -> list:
     pila_nodos = []
 
     for token in lista_posfijo:
-        if token.isdigit() or token == "0.0":
+        if token.replace(".","", 1).isdigit():
             nodo_numero = NodoNumero(token)
             pila_nodos.append(nodo_numero)
 
@@ -12,7 +12,7 @@ def parser(lista_posfijo: list) -> list:
             operador = token
             derecha = pila_nodos.pop()
             izquierda = pila_nodos.pop()
-            nodo = NodoBinario(operador, derecha, izquierda)
+            nodo = NodoBinario(operador, izquierda, derecha)
             pila_nodos.append(nodo)
 
     return pila_nodos
